@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-jack:Test1234567890@cluster0-twpms.mongodb.net/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS} @cluster0-twpms.mongodb.net/todolistDB", {useNewUrlParser: true});
 
 const itemsSchema = {
   name: String
